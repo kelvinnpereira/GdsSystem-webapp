@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import {Provider, useDispatch} from "react-redux";
+import { Provider } from "react-redux";
 import { useStore } from "./store";
 import { AppRoutes } from './routes';
 

@@ -6,7 +6,6 @@ import {shallowEqual, useDispatch, useSelector} from "react-redux";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const {request, isLoading} = useRequest('/token/', 'post');
@@ -64,7 +63,7 @@ const LoginPage = () => {
             </h1>
             <div className="space-y-4 md:space-y-6">
               <div>
-                <label form="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                <label form="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your user name</label>
                 <input
                   type="text"
                   name="username"
@@ -99,7 +98,7 @@ const LoginPage = () => {
                 <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
               </div>
               <button
-                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="w-full border border-gray-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 onClick={handleLogin}
               >
                 Sign in

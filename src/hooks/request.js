@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { get, post } from "../config/api";
 import { redirect } from "react-router-dom";
 

@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import LoginPages from './pages/login/index';
 import HomePage from './pages/home/index';
+import SignUpPage from "./pages/signup";
 import { useDispatch, } from "react-redux";
 
 export const AppRoutes = () => {
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
           <Route index element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/login" element={<LoginPages />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </BrowserRouter>
     </>

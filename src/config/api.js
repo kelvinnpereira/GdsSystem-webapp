@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const HOST = process.env.SERVER_HOST ?? "http://localhost:8000";
+
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: HOST,
 });
 
 const post = (url, data, config) => {

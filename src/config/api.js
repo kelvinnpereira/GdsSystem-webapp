@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const HOST = process.env.SERVER_HOST ?? "http://localhost:8000";
+const HOST = process.env.SERVER_HOST ?? "https://gds-system-server-48ae9d941d52.herokuapp.com";
 
 const api = axios.create({
   baseURL: HOST,

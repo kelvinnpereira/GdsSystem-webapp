@@ -14,9 +14,9 @@ const useRequest = (url, method = 'get') => {
     shallowEqual
   );
 
-  const request = async (data) => {
+  const request = async (data, config) => {
     setIsLoading(true)
-    const config = {headers: auth.token ?? 'no-token'}
+    config = {headers: {...config, 'Authorization': 'Token ' + auth.token ?? 'no-token'}}
     let response = null;
     if (method === 'get') {
       response = await get(url, config)

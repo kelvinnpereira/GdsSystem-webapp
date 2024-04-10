@@ -9,8 +9,8 @@ const HomePage = () => {
   const [cards, setCards] = useState([]);
   useEffect(() => {
     const fetch = async () => {
-      const response = await request();
-      if (response.data) {
+      const response = await request()
+      if (response?.data) {
         setCards(response.data)
       }
     }

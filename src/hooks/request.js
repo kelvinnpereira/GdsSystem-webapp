@@ -16,18 +16,30 @@ const useRequest = (url, method = 'get') => {
 
   const request = async (data, config) => {
     setIsLoading(true)
-    config = {headers: {...config, 'Authorization': 'Token ' + auth.token ?? 'no-token'}}
-    let response = null;
+    config = {headers: {...config}}
+    if (auth?.token) {
+      config.headers['Authorization'] = `Token ${auth.token}`
+    }
+    let response = null
     if (method === 'get') {
-      response = await get(url, config)
+      await get(url, config)
+      .then((res) => {
+        response = res
+      }, (error) => {
+        response = error?.response
+      })
     } else {
-      response = await post(url, data, config)
+      await post(url, data, config)
+      .then((res) => {
+        response = res
+      }, (error) => {
+        response = error?.response
+      })
     }
     setIsLoading(false)
     if (response.status === 401) {
-      alert(`not authenticated ${url}`)
       dispatch({ type: "LOGOUT" });
-      redirect("/auth/login");
+      redirect("/login");
       return;
     }
     if (response.status === 500) {

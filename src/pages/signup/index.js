@@ -26,12 +26,13 @@ const SignUpPage = () => {
       const response = await request({
         username: username,
         password: password,
-      }).catch(err => {
-        alert(err)
       })
-      if (!response?.username) {
-        alert(response)
+      if (Array.isArray(response?.username) && response?.username.length > 0) {
+        alert(response.username[0]);
+      } else if (!response?.username) {
+        alert(response);
       } else {
+        alert(`usuario ${response?.username} foi criado com sucesso`);
         navigate("/login");
       }
     }

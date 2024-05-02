@@ -48,16 +48,10 @@ const HomePage = () => {
                 <span className="flex flex-row text-sm text-gray-400">Conteudo</span>
               </div>
               <div
-                className="flex flex-col items-center justify-center"
+                className="flex flex-col items-center justify-center col-span-2"
               >
                 <span className="flex flex-row text-lg text-gray-200">{card.grau}</span>
                 <span className="flex flex-row text-sm text-gray-400">Grau de aplicação</span>
-              </div>
-              <div
-                className="flex flex-col items-center justify-center"
-              >
-                <span className="flex flex-row text-lg text-gray-200">{card.serie}</span>
-                <span className="flex flex-row text-sm text-gray-400">Publico</span>
               </div>
             </div>
             <div className="flex items-center justify-between mt-5">

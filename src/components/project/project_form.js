@@ -787,11 +787,11 @@ const formElements = [
     key: 'viloes',
     values: {
       'Medieval': [
-        'Feridos por Flechas Emboscadas',
-        'Sequestrados por Bandidos na Estrada',
-        'Feridos em um Duelo de Honra',
-        'Sequestrados por Adoradores de um Dragão',
-        'Feridos em uma Emboscada de Mortos-Vivos',
+        'Uma conspiração sinistra entre vários nobres ambiciosos, unidos por um desejo ardente de derrubar a monarquia e reivindicar o trono para si.',
+        'Um pacto obscuro entre um feiticeiro maligno e um cavaleiro renegado, unidos pelo desejo de espalhar o terror e subjugar o reino.',
+        'Um embate de vontades entre diferentes clãs de bárbaros, cada um liderado por um guerreiro implacável determinado a conquistar territórios e saquear vilas.',
+        'Uma aliança nefasta entre um senhor da guerra ambicioso e um dragão ancestral, unidos pela sede de poder e pela vontade de subjugar toda a terra sob seu domínio.',
+        'Uma sociedade secreta de assassinos e espiões, cada membro jurando lealdade ao mestre das sombras, cujos planos sinistros ameaçam desestabilizar todo o reino.',
       ],
       'Reino encantado': [
         'Um poderoso feiticeiro das trevas, conhecido como Malakar, lidera as forças das sombras.',

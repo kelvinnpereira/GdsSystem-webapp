@@ -39,11 +39,12 @@ const ProfileDropdown = () => {
           <div
             className="py-1"
           >
-            <button
+            <a
+              href="/profile"
               className="text-gray-200 block w-full px-4 py-2 text-left text-sm hover:text-white hover:bg-gray-600"
             >
               Perfil
-            </button>
+            </a>
             <button
               className="text-gray-200 block w-full px-4 py-2 text-left text-sm hover:text-white hover:bg-gray-600"
               onClick={logOut}

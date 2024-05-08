@@ -53,7 +53,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <a
-                    href="/project/new"
+                    href="/project_new"
                     className="block text-gray-200 hover:text-white"
                   >
                     <span className="rounded-lg border-4 border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700">Novo Projeto</span>

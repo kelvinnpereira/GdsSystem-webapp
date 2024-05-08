@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MdFavorite, MdFavoriteBorder, MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
+import { MdFavorite, MdOpenInNew, MdFavoriteBorder, MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { CgProfile } from 'react-icons/cg'
 import useRequest from "../../hooks/request";
@@ -32,9 +32,11 @@ const HomePage = () => {
               className="flex justify-between my-5"
             >
               <div>
-                <a href="#">
+                <a className="flex flex-row items-center" href={`/project/${card.id}`}>
                   <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{card.titulo}</h5>
+                  <MdOpenInNew className="cursor-pointer ml-2 mt-1" size={20}/>
                 </a>
+                
               </div>
               <div>
                 <MdFavoriteBorder className="cursor-pointer" size={30}/>

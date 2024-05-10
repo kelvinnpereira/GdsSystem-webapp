@@ -214,7 +214,7 @@ const formElements = [
       'Floresta mágica': [
         'Um reino de paz e harmonia, governado por criaturas mágicas e protegido por antigas alianças entre humanos e seres da floresta.',
         'Uma terra outrora próspera, agora ameaçada pela escuridão que se infiltra pelos limites da floresta, desequilibrando a magia e a vida selvagem.',
-       ' Uma profecia antiga fala de um herói destinado a restaurar o equilíbrio na Floresta Encantada, enfrentando desafios épicos e descobrindo segredos há muito perdidos.',
+        ' Uma profecia antiga fala de um herói destinado a restaurar o equilíbrio na Floresta Encantada, enfrentando desafios épicos e descobrindo segredos há muito perdidos.',
         'Guerras ancestrais entre as diferentes facções da floresta deixaram cicatrizes profundas, e agora a paz é mantida por um fio enquanto as tensões aumentam.',
         'Os mistérios da floresta ocultam segredos antigos, artefatos mágicos e portais para outros mundos, atraindo aventureiros e buscadores de poder.',
       ],
@@ -549,7 +549,7 @@ const formElements = [
         'Caçadores de tesouros: Exploradores que buscam relíquias e artefatos antigos, muitas vezes arriscando-se em territórios perigosos em busca de riquezas.',
       ],
       'Futurista': [
-        - 'Um cientista excêntrico que fornece informações vitais e tecnologia avançada para o jogador.',
+        'Um cientista excêntrico que fornece informações vitais e tecnologia avançada para o jogador.',
         'Um mercador intergaláctico que oferece itens raros e contratos lucrativos em troca de favores.',
         'Um hacker habilidoso que ajuda o jogador a acessar sistemas de segurança e obter informações sigilosas.',
         'Um líder carismático da resistência, inspirando outros a se levantarem contra a opressão.',
@@ -950,7 +950,7 @@ const formElements = [
         'Os Guardiões da Natureza: Entidades poderosas, como espíritos elementais e árvores antigas, se erguem para proteger a floresta e auxiliar os heróis em sua missão.',
         'Os Habitantes da Floresta: Grupos de seres da floresta, como gnomos, centauros e dríades, se juntam aos heróis, compartilhando seu conhecimento da região e fornecendo apoio em batalha.',
         'O Destinado Herói: Um personagem escolhido pela profecia ou destino, com habilidades especiais ou uma conexão única com a floresta, lidera os heróis em sua jornada para restaurar o equilíbrio na Floresta Encantada.',
-        
+
       ],
       'Futurista': [
         'O Líder Destemido: Um herói carismático e determinado que lidera a luta contra o mal, inspirando outros a seguirem seu exemplo.',
@@ -1428,7 +1428,7 @@ const formElements = [
   },
 ]
 
-const GridItem = ({icon, title, index, selectedIndex, setSelectedIndex}) => {
+const GridItem = ({ icon, title, index, selectedIndex, setSelectedIndex }) => {
   const bg_color = selectedIndex === index ? "bg-green-900" : "";
   return (
     <>
@@ -1449,33 +1449,33 @@ const GridItem = ({icon, title, index, selectedIndex, setSelectedIndex}) => {
   )
 }
 
-const Ambiente = ({gridType, selectedIndex, setSelectedIndex}) => {
+const Ambiente = ({ gridType, selectedIndex, setSelectedIndex }) => {
   return (
     <>
       <div className={`grid grid-cols-2 gap-0 ${gridType !== 'ambiente' ? "hidden" : ""}`}>
-        <GridItem icon={<GiTeacher size={50}/>} title={"Conteudo aplicado"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-        <GridItem icon={<MdGroup size={50}/>} title={"Os seus jogadores"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-        <GridItem icon={<FaGamepad size={50}/>} title={"O que mais gostam"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-        <GridItem icon={<FaPencilRuler size={50}/>} title={"O que tem ao seu redor"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
+        <GridItem icon={<GiTeacher size={50} />} title={"Conteudo aplicado"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<MdGroup size={50} />} title={"Os seus jogadores"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<FaGamepad size={50} />} title={"O que mais gostam"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<FaPencilRuler size={50} />} title={"O que tem ao seu redor"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
       </div>
     </>
   )
 }
 
-const Design = ({gridType, selectedIndex, setSelectedIndex}) => {
+const Design = ({ gridType, selectedIndex, setSelectedIndex }) => {
   return (
     <>
       <div className={`grid grid-cols-2 gap-0 ${gridType !== 'design' ? "hidden" : ""}`}>
-        <GridItem icon={<FaGlobe size={50}/>} title={"Tema"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-        <GridItem icon={<GiForest size={50}/>} title={"Ambiente"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-        <GridItem icon={<FaRunning size={50}/>} title={"Jogador"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-        <GridItem icon={<GiGreaseTrap size={50}/>} title={"Desafios"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
+        <GridItem icon={<FaGlobe size={50} />} title={"Tema"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<GiForest size={50} />} title={"Ambiente"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<FaRunning size={50} />} title={"Jogador"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<GiGreaseTrap size={50} />} title={"Desafios"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
       </div>
     </>
   )
 }
 
-const Finalizacao = ({gridType}) => {
+const Finalizacao = ({ gridType }) => {
   return (
     <>
       <div className={`grid grid-rows-2 gap-0 ${gridType !== 'finalizacao' ? "hidden" : ""}`}>
@@ -1486,7 +1486,7 @@ const Finalizacao = ({gridType}) => {
   )
 }
 
-const FormComponent = ({ project, selectedIndex, gridType}) => {
+const FormComponent = ({ project, selectedIndex, gridType }) => {
   const navigate = useNavigate();
   const { handleSubmit, register, clearErrors, watch } = useForm();
   const [errors, setErrors] = useState({});
@@ -1534,7 +1534,7 @@ const FormComponent = ({ project, selectedIndex, gridType}) => {
       component = <>
         <div className="form-label">{element.title}</div>
         <select
-          ref={register({validate: notEmpty})}
+          ref={register({ validate: notEmpty })}
           name={element.key}
           defaultValue={defaultValue}
           onChange={onChange}
@@ -1548,7 +1548,7 @@ const FormComponent = ({ project, selectedIndex, gridType}) => {
       component = <>
         <div className="form-label">{element.title}</div>
         <input
-          ref={register({validate: notEmpty})}
+          ref={register({ validate: notEmpty })}
           name={element.key}
           type="text"
           onChange={onChange}
@@ -1560,7 +1560,7 @@ const FormComponent = ({ project, selectedIndex, gridType}) => {
       component = <>
         <div className="form-label">{element.title}</div>
         <textarea
-          ref={register({validate: notEmpty})}
+          ref={register({ validate: notEmpty })}
           name={element.key}
           rows={2}
           cols={5}
@@ -1573,7 +1573,7 @@ const FormComponent = ({ project, selectedIndex, gridType}) => {
       component = <>
         <div className="form-label">{element.title}</div>
         <input
-          ref={register({validate: hasFile})}
+          ref={register({ validate: hasFile })}
           name={element.key}
           type="file"
           onChange={onChange}
@@ -1602,14 +1602,14 @@ const FormComponent = ({ project, selectedIndex, gridType}) => {
         <div>
 
         </div>
-          {formElements.map((element, index) => {
-            return <div
-              className={`w-1/2 flex flex-col space-x-4 ${element.index !== selectedIndex || element.grid_type !== gridType ? "hidden" : ""}`}
-              key={index}
-            >
-              {selectComponent(element)}
-            </div>
-          })}
+        {formElements.map((element, index) => {
+          return <div
+            className={`w-1/2 flex flex-col space-x-4 ${element.index !== selectedIndex || element.grid_type !== gridType ? "hidden" : ""}`}
+            key={index}
+          >
+            {selectComponent(element)}
+          </div>
+        })}
         <div
           className="container flex flex-col items-center"
         >
@@ -1628,7 +1628,7 @@ const FormComponent = ({ project, selectedIndex, gridType}) => {
   )
 }
 
-const ProjectForm = ({project = null}) => {
+const ProjectForm = ({ project = null }) => {
   const [gridType, setGridType] = useState('ambiente');
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -1639,7 +1639,7 @@ const ProjectForm = ({project = null}) => {
           className="flex flex-col lg:flex-row"
         >
           <div
-            style={{width: '355px'}}
+            style={{ width: '355px' }}
             className=""
           >
             <div
@@ -1700,7 +1700,7 @@ const ProjectForm = ({project = null}) => {
             </div>
           </div>
           <div
-            style={{width: '1000px', }}
+            style={{ width: '1000px', }}
             className="pl-2"
           >
             <div

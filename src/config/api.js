@@ -6,15 +6,25 @@ const api = axios.create({
   baseURL: HOST,
 });
 
-const post = (url, data, config) => {
-  return api.post(url, data, config)
-}
-
 const get = (url, config) => {
   return api.get(url, config)
 }
 
+const post = (url, data, config) => {
+  return api.post(url, data, config)
+}
+
+const put = (url, data, config) => {
+  return api.put(url, data, config)
+}
+
+const del = (url, config) => {
+  return api.delete(url, config)
+}
+
 export {
+  get,
   post,
-  get
+  put,
+  del,
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { get, post } from "../config/api";
+import { get, post, put, del } from "../config/api";
 import { redirect } from "react-router-dom";
 
 const useRequest = (url, method = 'get') => {
@@ -14,11 +14,14 @@ const useRequest = (url, method = 'get') => {
     shallowEqual
   );
 
-  const request = async (data, config) => {
+  const request = async (data, config, pk = null) => {
     setIsLoading(true)
     config = {headers: {...config}}
     if (auth?.token) {
       config.headers['Authorization'] = `Token ${auth.token}`
+    }
+    if (pk) {
+      url = `${url}/${pk}`
     }
     let response = null
     if (method === 'get') {
@@ -28,8 +31,22 @@ const useRequest = (url, method = 'get') => {
       }, (error) => {
         response = error?.response
       })
-    } else {
+    } else if (method === 'post') {
       await post(url, data, config)
+      .then((res) => {
+        response = res
+      }, (error) => {
+        response = error?.response
+      })
+    } else if (method === 'put') {
+      await put(url, data, config)
+      .then((res) => {
+        response = res
+      }, (error) => {
+        response = error?.response
+      })
+    } else if (method === 'delete') {
+      await del(url, config)
       .then((res) => {
         response = res
       }, (error) => {
@@ -38,9 +55,10 @@ const useRequest = (url, method = 'get') => {
     }
     setIsLoading(false)
     if (response.status === 401) {
-      dispatch({ type: "LOGOUT" });
-      redirect("/login");
-      return;
+      // dispatch({ type: "LOGOUT" });
+      // redirect("/login");
+      // return;
+      alert(`un ${url}`)
     }
     if (response.status === 500) {
       alert(`Some error happened in ${url}`)

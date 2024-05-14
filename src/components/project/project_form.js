@@ -1411,14 +1411,6 @@ const formElements = [
     values: '',
   },
   {
-    component: 'textarea',
-    grid_type: 'finalizacao',
-    index: 0,
-    title: 'Adicione uma descrição:',
-    key: 'descricao',
-    values: '',
-  },
-  {
     component: 'file',
     grid_type: 'finalizacao',
     index: 0,

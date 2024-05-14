@@ -116,12 +116,12 @@ const Project = () => {
           </div>
           <div className="mt-4 bg-gray-900 overflow-y-auto h-[500px]">
             <div className="text-white text-lg mx-8 my-8">
-              <div className="text-xl">
+              <div className="text-xl mb-8">
                 {projeto?.descricao}
               </div>
               {Object.keys(options).map((type, index) =>
                 <div className="text-xl" index={type}>
-                  {type}:
+                  <div className="font-bold">{type}:</div>
                   <ul class="ml-8 list-disc">
                     {Object.keys(options[type]).map((key, index) =>
                       <li>{options[type][key]}{projeto[key]}</li>

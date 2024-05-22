@@ -1,4 +1,5 @@
 import {SiGamedeveloper} from "react-icons/si";
+import {BsSun, BsSunFill} from "react-icons/bs";
 import Search from "../search/search_projects";
 import ProfileDropdown from "../profile/dropdown";
 
@@ -31,6 +32,30 @@ const Navbar = () => {
               </div>
               <div>
                 <ProfileDropdown/>
+              </div>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  if (localStorage.getItem('color-theme')) {
+                    if (localStorage.getItem('color-theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    }
+                } else {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    }
+                }
+                }}
+              >
+                <BsSunFill size={25}/>
               </div>
             </div>
             <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1">

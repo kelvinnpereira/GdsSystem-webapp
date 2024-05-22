@@ -28,15 +28,15 @@ const ProfilePage = () => {
 
 				<div className="flex flex-row justify-center">
 					<div className="mx-4">
-						<div className="mx-[130px] w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+						<div className="mx-[130px] w-32 h-32 relative -mt-16 border-4 border-gray-200 dark:border-gray-700 rounded-full overflow-hidden">
 							<img className="object-cover object-center h-32" src='https://i.stack.imgur.com/l60Hf.png' alt='profile' />
 						</div>
-						<div className="w-96 mt-4 shadow-lg shadow-gray-900 rounded-lg border border-gray-700">
+						<div className="w-96 mt-4 shadow-lg shadow-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
 							<div className="text-center mt-2">
-								<div className="text-gray-200 text-2xl">{`${profile?.first_name} ${profile?.last_name}`}</div>
-								<div className="text-gray-400 text-xl">{profile?.username}</div>
+								<div className="text-gray-200 text-2xl text-gray-600 dark:text-gray-300">{`${profile?.first_name} ${profile?.last_name}`}</div>
+								<div className="text-gray-400 text-xl text-gray-600 dark:text-gray-300">{profile?.username}</div>
 							</div>
-							<ul className="py-4 mt-2 text-gray-300 flex items-center justify-around">
+							<ul className="py-4 mt-2 text-gray-600 dark:text-gray-300 flex items-center justify-around">
 								<li className="flex flex-col items-center justify-around">
 									<div>{profile?.projetos?.length}</div>
 									<div>Publicações</div>
@@ -51,7 +51,7 @@ const ProfilePage = () => {
 								</li>
 							</ul>
 							<div className="p-4 mx-8 mt-2">
-								<button className="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Editar perfil</button>
+								<button className="w-1/2 block mx-auto rounded-full bg-gray-400 dark:bg-gray-600 hover:shadow-lg font-semibold text-gray-800 dark:text-gray-200 px-6 py-2">Editar perfil</button>
 							</div>
 						</div>
 					</div>

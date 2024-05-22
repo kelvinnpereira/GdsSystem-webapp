@@ -21,7 +21,7 @@ const Main = () => {
     <>
       <div
         data-layout="main-layout"
-        className="font-sans antialiased text-sm dark w-full bg-gray-800 text-white"
+        className="font-sans antialiased text-sm w-full bg-gray-200 dark:bg-gray-800 text-white light"
       >
         <Navbar/>
         <Outlet/>

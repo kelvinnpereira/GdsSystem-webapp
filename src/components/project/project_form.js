@@ -1421,11 +1421,11 @@ const formElements = [
 ]
 
 const GridItem = ({ icon, title, index, selectedIndex, setSelectedIndex }) => {
-  const bg_color = selectedIndex === index ? "bg-green-900" : "";
+  const bg_color = selectedIndex === index ? "bg-green-500 dark:bg-green-900" : "";
   return (
     <>
       <div
-        className={`flex flex-col items-center cursor-pointer border border-gray-200 w-40 h-40 ${bg_color}`}
+        className={`flex flex-col items-center cursor-pointer border border-gray-800 dark:border-gray-200 w-40 h-40 ${bg_color}`}
         onClick={(event) => {
           if ((title === 'Ambiente' || title === 'Jogador' || title === 'Desafios') && !document.getElementsByName('tema')[0]?.value) {
             alert('Selecione um tema para acessar essas opções')
@@ -1435,7 +1435,7 @@ const GridItem = ({ icon, title, index, selectedIndex, setSelectedIndex }) => {
         }}
       >
         <div className="pt-8">{icon}</div>
-        <div className="text-center">{title}</div>
+        <div className="text-center text-gray-800 dark:text-gray-200">{title}</div>
       </div>
     </>
   )
@@ -1445,10 +1445,10 @@ const Ambiente = ({ gridType, selectedIndex, setSelectedIndex }) => {
   return (
     <>
       <div className={`grid grid-cols-2 gap-0 ${gridType !== 'ambiente' ? "hidden" : ""}`}>
-        <GridItem icon={<GiTeacher size={50} />} title={"Conteudo aplicado"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<MdGroup size={50} />} title={"Os seus jogadores"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<FaGamepad size={50} />} title={"O que mais gostam"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<FaPencilRuler size={50} />} title={"O que tem ao seu redor"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<GiTeacher size={50} className="fill-black dark:fill-white" />} title={"Conteudo aplicado"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<MdGroup size={50} className="fill-black dark:fill-white"/>} title={"Os seus jogadores"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<FaGamepad size={50} className="fill-black dark:fill-white"/>} title={"O que mais gostam"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<FaPencilRuler size={50} className="fill-black dark:fill-white"/>} title={"O que tem ao seu redor"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
       </div>
     </>
   )
@@ -1458,10 +1458,10 @@ const Design = ({ gridType, selectedIndex, setSelectedIndex }) => {
   return (
     <>
       <div className={`grid grid-cols-2 gap-0 ${gridType !== 'design' ? "hidden" : ""}`}>
-        <GridItem icon={<FaGlobe size={50} />} title={"Tema"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<GiForest size={50} />} title={"Ambiente"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<FaRunning size={50} />} title={"Jogador"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<GiGreaseTrap size={50} />} title={"Desafios"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<FaGlobe size={50} className="fill-black dark:fill-white"/>} title={"Tema"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<GiForest size={50} className="fill-black dark:fill-white"/>} title={"Ambiente"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<FaRunning size={50} className="fill-black dark:fill-white"/>} title={"Jogador"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+        <GridItem icon={<GiGreaseTrap size={50} className="fill-black dark:fill-white"/>} title={"Desafios"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
       </div>
     </>
   )
@@ -1478,7 +1478,7 @@ const Finalizacao = ({ gridType }) => {
   )
 }
 
-const FormComponent = ({ project, selectedIndex, gridType }) => {
+const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, setGridType }) => {
   const navigate = useNavigate();
   const { handleSubmit, register, clearErrors, watch } = useForm();
   const [errors, setErrors] = useState({});
@@ -1524,13 +1524,13 @@ const FormComponent = ({ project, selectedIndex, gridType }) => {
     }
     if (element.component === 'select') {
       component = <>
-        <div className="form-label">{element.title}</div>
+        <div className="form-label text-gray-800 dark:text-gray-200">{element.title}</div>
         <select
           ref={register({ validate: notEmpty })}
           name={element.key}
           defaultValue={defaultValue}
           onChange={onChange}
-          className="w-full bg-gray-800 border border-gray-700 text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full bg-gray-200 dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
         >
           <option key="default" value="">Selecione uma opção</option>
           {(element.grid_type === 'design' && element.key !== 'tema' ? element.values[tema] : element.values)?.map((value, index) => <option key={index} value={value}>{value}</option>)}
@@ -1538,38 +1538,38 @@ const FormComponent = ({ project, selectedIndex, gridType }) => {
       </>
     } else if (element.component === 'text') {
       component = <>
-        <div className="form-label">{element.title}</div>
+        <div className="form-label text-gray-800 dark:text-gray-200">{element.title}</div>
         <input
           ref={register({ validate: notEmpty })}
           name={element.key}
           type="text"
           onChange={onChange}
-          className="w-full bg-gray-800 border border-gray-700 text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full bg-gray-200 dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
           defaultValue={defaultValue}
         />
       </>
     } else if (element.component === 'textarea') {
       component = <>
-        <div className="form-label">{element.title}</div>
+        <div className="form-label text-gray-800 dark:text-gray-200">{element.title}</div>
         <textarea
           ref={register({ validate: notEmpty })}
           name={element.key}
           rows={2}
           cols={5}
           onChange={onChange}
-          className="w-full bg-gray-800 border border-gray-700 text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full bg-gray-200 dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
           defaultValue={defaultValue}
         />
       </>
     } else if (element.component === 'file') {
       component = <>
-        <div className="form-label">{element.title}</div>
+        <div className="form-label text-gray-800 dark:text-gray-200">{element.title}</div>
         <input
           ref={register({ validate: hasFile })}
           name={element.key}
           type="file"
           onChange={onChange}
-          className="form-input"
+          className="form-input text-gray-800 dark:text-gray-200"
           defaultValue={defaultValue}
         />
       </>
@@ -1608,11 +1608,34 @@ const FormComponent = ({ project, selectedIndex, gridType }) => {
           <div
             className="w-1/4 flex items-center"
           >
-            <input
-              type="submit"
-              value="Submit"
-              className="w-full cursor-pointer btn btn-default bg-blue-500 hover:bg-blue-600 text-white btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
-            />
+            {gridType === 'finalizacao' ?
+              <input
+                type="submit"
+                value="Submit"
+                className="w-full cursor-pointer btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
+              /> :
+              <button
+                className="w-full cursor-pointer btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
+                onClick={(event) => {
+                  event.preventDefault()
+                  const nextIndex = (selectedIndex+1) % 4;
+                  let nextGridType = gridType;
+                  if (nextIndex === 0) {
+                    if (gridType === 'ambiente') {
+                      nextGridType = 'design';
+                    } else if (gridType === 'design') {
+                      nextGridType = 'finalizacao';
+                    } else {
+                      nextGridType = 'ambiente';
+                    }
+                    setGridType(nextGridType);
+                  }
+                  setSelectedIndex(nextIndex);
+                }}
+              >
+                Next
+              </button>
+            }
           </div>
         </div>
       </form>
@@ -1635,13 +1658,13 @@ const ProjectForm = ({ project = null }) => {
             className=""
           >
             <div
-              className={`w-full rounded-lg border border-gray-100 p-4 `}
+              className={`w-full rounded-lg border border-gray-800 dark:border-gray-200 p-4 `}
             >
               <div
-                className={`w-full rounded-lg border border-gray-100`}
+                className={`w-full rounded-lg border border-gray-800 dark:border-gray-200`}
               >
                 <div
-                  className={`text-center text-xl ${gridType === 'ambiente' ? 'bg-gray-500' : 'cursor-pointer'}`}
+                  className={`text-center text-xl ${gridType === 'ambiente' ? 'text-gray-200 dark:text-gray-200 bg-gray-500' : 'cursor-pointer text-gray-800 dark:text-gray-200'}`}
                   onClick={(event) => {
                     setGridType('ambiente');
                     setSelectedIndex(0);
@@ -1656,10 +1679,10 @@ const ProjectForm = ({ project = null }) => {
                 />
               </div>
               <div
-                className={`w-full rounded-lg border border-gray-100`}
+                className={`w-full rounded-lg border border-gray-800 dark:border-gray-200`}
               >
                 <div
-                  className={`text-center text-xl ${gridType === 'design' ? 'bg-gray-500' : 'cursor-pointer'}`}
+                  className={`text-center text-xl ${gridType === 'design' ? 'text-gray-200 dark:text-gray-200 bg-gray-500' : 'cursor-pointer text-gray-800 dark:text-gray-200'}`}
                   onClick={(event) => {
                     setGridType('design');
                     setSelectedIndex(0);
@@ -1674,10 +1697,10 @@ const ProjectForm = ({ project = null }) => {
                 />
               </div>
               <div
-                className={`w-full rounded-lg border border-gray-100`}
+                className={`w-full rounded-lg border border-gray-800 dark:border-gray-200`}
               >
                 <div
-                  className={`flex flex-col w-160 text-center text-xl ${gridType === 'finalizacao' ? 'bg-gray-500' : 'cursor-pointer'}`}
+                  className={`flex flex-col w-160 text-center text-xl ${gridType === 'finalizacao' ? 'text-gray-200 dark:text-gray-200 bg-gray-500' : 'cursor-pointer text-gray-800 dark:text-gray-200'}`}
                   onClick={(event) => {
                     setGridType('finalizacao');
                     setSelectedIndex(0);
@@ -1696,12 +1719,14 @@ const ProjectForm = ({ project = null }) => {
             className="pl-2"
           >
             <div
-              className={`w-full rounded-lg border border-gray-100 p-4 shadow-black`}
+              className={`w-full rounded-lg border border-gray-800 dark:border-gray-200 p-4 shadow-black`}
             >
               <FormComponent
                 project={project}
                 selectedIndex={selectedIndex}
+                setSelectedIndex={setSelectedIndex}
                 gridType={gridType}
+                setGridType={setGridType}
               />
             </div>
           </div>

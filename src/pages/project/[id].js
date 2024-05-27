@@ -97,18 +97,18 @@ const Project = () => {
                 </a>
               </div>
               <div>
-                <div className="w-full bg-gray-700 border border-gray-700 rounded-lg grid grid-cols-3 divide-x sm:p-4">
+                <div className="w-full bg-gray-300 dark:bg-gray-700 border border-gray-500 rounded-lg grid grid-cols-3 divide-x sm:p-4">
                   <div
                     className="flex flex-col items-center justify-center"
                   >
-                    <span className="flex flex-row text-lg text-gray-200">{projeto?.disciplina}</span>
-                    <span className="flex flex-row text-sm text-gray-400">Conteudo</span>
+                    <span className="flex flex-row text-base text-gray-700 dark:text-gray-200">{projeto?.campos?.conteudo}</span>
+                    <span className="flex flex-row text-sm text-gray-500 dark:text-gray-400">Conteudo</span>
                   </div>
                   <div
                     className="flex flex-col items-center justify-center col-span-2"
                   >
-                    <span className="flex flex-row text-lg text-gray-200 p-4">{projeto?.grau}</span>
-                    <span className="flex flex-row text-sm text-gray-400">Grau de aplicação</span>
+                    <span className="flex flex-row text-base text-gray-700 dark:text-gray-200 pl-4">{projeto?.campos?.idade}</span>
+                    <span className="flex flex-row text-sm text-gray-500 dark:text-gray-400">Grau de aplicação</span>
                   </div>
                 </div>
               </div>
@@ -116,10 +116,10 @@ const Project = () => {
           </div>
           <div className="mt-4 bg-gray-900 overflow-y-auto h-[500px]">
             <div className="text-white text-lg mx-8 my-8">
-              <div className="text-xl mb-8">
+              <div className="text-xl mb-8" style={{whiteSpace: "pre-wrap"}}>
                 {projeto?.descricao}
               </div>
-              {Object.keys(options).map((type, index) =>
+              {/* {Object.keys(options).map((type, index) =>
                 <div className="text-xl" index={type}>
                   <div className="font-bold">{type}:</div>
                   <ul class="ml-8 list-disc">
@@ -128,7 +128,7 @@ const Project = () => {
                     )}
                   </ul>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>

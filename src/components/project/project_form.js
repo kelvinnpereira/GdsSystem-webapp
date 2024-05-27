@@ -476,7 +476,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
 
   const onSubmit = async (data) => {
     let formData = new FormData();
-    Object.keys(data).forEach((key) => formData.set(key, data[key]))
+    Object.keys(data).forEach((key) => Array.isArray(data[key]) ? formData.set(key, data[key].join(', ')) : formData.set(key, data[key]))
     formData.set('imagem', data.imagem[0])
     const response = await request(
       formData,
@@ -562,11 +562,25 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
           defaultValue={defaultValue}
         />
       </>
+    } else if (element.component === 'checkbox') {
+      component = <>
+        <fieldset className="flex flex-col border border-gray-800 dark:border-gray-200">
+          <legend className="form-label text-gray-800 dark:text-gray-200">{element.title}</legend>
+          {
+            element.values?.map((value, index) => <>
+              <label className="form-label text-gray-800 dark:text-gray-200 px-4" key={index}>
+                <input className="mr-2" type="checkbox" value={value} name={element.key} ref={register} />
+                {value}
+              </label>
+            </>)
+          }
+        </fieldset>
+      </>
     }
     return (
       <div
         key={element.key}
-        className={`flex flex-col form-element w-full px-10`}
+        className={`flex flex-col form-element w-full px-10 py-2`}
       >
         {component}
         {errors[element.key] ? <div className="text-red-500">{errors[element.key].message}</div> : null}

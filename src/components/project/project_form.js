@@ -1,6 +1,6 @@
 import { GiTeacher, GiForest, GiGreaseTrap } from "react-icons/gi";
 import { MdGroup } from "react-icons/md";
-import { FaPencilRuler, FaGamepad, FaGlobe, FaRunning } from "react-icons/fa";
+import { FaPencilRuler, FaGamepad, FaGlobe, FaRunning, FaSpinner } from "react-icons/fa";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useRequest from "../../hooks/request";
@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const formElements = [
   {
     component: 'text',
-    grid_type: 'ambiente',
     index: 0,
     title: 'Descreva sobre o conteúdo que será aprendido nesta missão?',
     key: 'conteudo',
@@ -17,7 +16,6 @@ const formElements = [
   },
   {
     component: 'select',
-    grid_type: 'ambiente',
     index: 0,
     title: 'Qual será o tipo de avaliação?',
     key: 'avaliacao',
@@ -61,8 +59,7 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
-    grid_type: 'ambiente',
+    component: 'checkbox',
     index: 1,
     title: 'Quais tipos de desafios você gostaria de incluir?',
     key: 'desafios',
@@ -90,8 +87,7 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
-    grid_type: 'ambiente',
+    component: 'checkbox',
     index: 1,
     title: 'Como os participantes interagirão entre si e com o sistema de gamificação?',
     key: 'interacao',
@@ -111,8 +107,7 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
-    grid_type: 'ambiente',
+    component: 'checkbox',
     index: 2,
     title: 'Que tipo de recompensas motivariam os participantes nesta missão?',
     key: 'recompensa',
@@ -140,8 +135,7 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
-    grid_type: 'ambiente',
+    component: 'checkbox',
     index: 2,
     title: 'Como será feita a avaliação do desempenho dos participantes na gamificação?',
     key: 'desempenho',
@@ -169,8 +163,7 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
-    grid_type: 'ambiente',
+    component: 'checkbox',
     index: 3,
     title: 'Como os participantes receberão feedback durante a gamificação?',
     key: 'feedback',
@@ -198,8 +191,7 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
-    grid_type: 'ambiente',
+    component: 'checkbox',
     index: 3,
     title: 'O que acontece se alguém não conseguir completar a missão?',
     key: 'falha',
@@ -221,9 +213,8 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
-    grid_type: 'design',
-    index: 0,
+    component: 'checkbox',
+    index: 4,
     title: 'O que você pretende alcançar com esta gamificação?',
     key: 'objetivo',
     values: [
@@ -234,8 +225,7 @@ const formElements = [
   },
   {
     component: 'select',
-    grid_type: 'design',
-    index: 0,
+    index: 4,
     title: 'O que você planeja gamificar?',
     key: 'planejamento',
     values: [
@@ -246,24 +236,21 @@ const formElements = [
   },
   {
     component: 'text',
-    grid_type: 'design',
-    index: 0,
+    index: 4,
     title: 'Qual a duração estimada da gamificação? (em minutos, horas, dias)',
     key: 'duracao',
     values: '',
   },
   {
     component: 'text',
-    grid_type: 'design',
-    index: 0,
+    index: 4,
     title: 'Qual o assunto que deseja que aprendam?',
     key: 'assunto',
     values: '',
   },
   {
     component: 'select',
-    grid_type: 'design',
-    index: 0,
+    index: 4,
     title: 'Onde a gamificação será realizada?',
     key: 'local',
     values: [
@@ -274,24 +261,14 @@ const formElements = [
   },
   {
     component: 'text',
-    grid_type: 'design',
-    index: 1,
-    title: 'Sobre os participantes',
-    key: 'participantes',
-    values: '',
-  },
-  {
-    component: 'text',
-    grid_type: 'design',
-    index: 1,
+    index: 5,
     title: 'Quantas pessoas participarão da atividade gamificada?',
     key: 'pessoas',
     values: '',
   },
   {
-    component: 'select',
-    grid_type: 'design',
-    index: 1,
+    component: 'checkbox',
+    index: 5,
     title: 'Qual a faixa etária dos participantes?',
     key: 'idade',
     values: [
@@ -304,9 +281,8 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
-    grid_type: 'design',
-    index: 1,
+    component: 'checkbox',
+    index: 5,
     title: 'Qual é o perfil dos participantes, o que eles gostam?',
     key: 'perfil',
     values: [
@@ -323,17 +299,8 @@ const formElements = [
     ],
   },
   {
-    component: 'text',
-    grid_type: 'design',
-    index: 2,
-    title: 'Envolvendo a narrativa',
-    key: 'narrativa',
-    values: '',
-  },
-  {
     component: 'select',
-    grid_type: 'design',
-    index: 2,
+    index: 6,
     title: 'Existe algum tema específico que gostaria de incorporar na gamificação?',
     key: 'tema',
     values: [
@@ -360,17 +327,8 @@ const formElements = [
     ],
   },
   {
-    component: 'text',
-    grid_type: 'design',
-    index: 3,
-    title: 'Personalização',
-    key: 'personalizacao',
-    values: '',
-  },
-  {
-    component: 'select',
-    grid_type: 'design',
-    index: 3,
+    component: 'checkbox',
+    index: 7,
     title: 'Os participantes terão a oportunidade de personalizar suas experiências na gamificação?',
     key: 'personalizar',
     values: [
@@ -398,81 +356,26 @@ const formElements = [
   },
   {
     component: 'text',
-    grid_type: 'finalizacao',
-    index: 0,
+    index: 8,
     title: 'Titulo',
     key: 'titulo',
     values: '',
   },
   {
     component: 'file',
-    grid_type: 'finalizacao',
-    index: 0,
+    index: 8,
     title: 'Adicione uma capa',
     key: 'imagem',
     values: '',
   },
 ]
 
-const GridItem = ({ icon, title, index, selectedIndex, setSelectedIndex }) => {
-  const bg_color = selectedIndex === index ? "bg-green-500 dark:bg-green-900" : "";
-  return (
-    <>
-      <div
-        className={`flex flex-col items-center cursor-pointer border border-gray-800 dark:border-gray-200 w-40 h-40 ${bg_color}`}
-        onClick={(event) => {
-          setSelectedIndex(index)
-        }}
-      >
-        <div className="pt-8">{icon}</div>
-        <div className="text-center text-gray-800 dark:text-gray-200">{title}</div>
-      </div>
-    </>
-  )
-}
 
-const Ambiente = ({ gridType, selectedIndex, setSelectedIndex }) => {
-  return (
-    <>
-      <div className={`grid grid-cols-2 gap-0 ${gridType !== 'ambiente' ? "hidden" : ""}`}>
-        <GridItem icon={<GiTeacher size={50} className="fill-black dark:fill-white" />} title={"Conteudo aplicado"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<MdGroup size={50} className="fill-black dark:fill-white"/>} title={"Os seus jogadores"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<FaGamepad size={50} className="fill-black dark:fill-white"/>} title={"O que mais gostam"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<FaPencilRuler size={50} className="fill-black dark:fill-white"/>} title={"O que tem ao seu redor"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-      </div>
-    </>
-  )
-}
-
-const Design = ({ gridType, selectedIndex, setSelectedIndex }) => {
-  return (
-    <>
-      <div className={`grid grid-cols-2 gap-0 ${gridType !== 'design' ? "hidden" : ""}`}>
-        <GridItem icon={<FaGlobe size={50} className="fill-black dark:fill-white"/>} title={"Tema"} index={0} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<GiForest size={50} className="fill-black dark:fill-white"/>} title={"Ambiente"} index={1} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<FaRunning size={50} className="fill-black dark:fill-white"/>} title={"Jogador"} index={2} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <GridItem icon={<GiGreaseTrap size={50} className="fill-black dark:fill-white"/>} title={"Desafios"} index={3} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-      </div>
-    </>
-  )
-}
-
-const Finalizacao = ({ gridType }) => {
-  return (
-    <>
-      <div className={`grid grid-rows-2 gap-0 ${gridType !== 'finalizacao' ? "hidden" : ""}`}>
-        <div className={`flex flex-col w-40 h-40`}></div>
-        <div className={`flex flex-col w-40 h-40`}></div>
-      </div>
-    </>
-  )
-}
-
-const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, setGridType }) => {
+const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
   const navigate = useNavigate();
   const { handleSubmit, register, clearErrors, watch } = useForm();
   const [errors, setErrors] = useState({});
-  const { request } = useRequest('/projeto_usuario', 'post');
+  const { request, isLoading } = useRequest('/projeto_usuario', 'post');
 
   const onSubmit = async (data) => {
     let formData = new FormData();
@@ -513,7 +416,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
     }
     if (element.component === 'select') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200">{element.title}</div>
+        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
         <select
           ref={register({ validate: notEmpty })}
           name={element.key}
@@ -527,7 +430,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
       </>
     } else if (element.component === 'text') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200">{element.title}</div>
+        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
         <input
           ref={register({ validate: notEmpty })}
           name={element.key}
@@ -539,7 +442,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
       </>
     } else if (element.component === 'textarea') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200">{element.title}</div>
+        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
         <textarea
           ref={register({ validate: notEmpty })}
           name={element.key}
@@ -552,7 +455,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
       </>
     } else if (element.component === 'file') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200">{element.title}</div>
+        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
         <input
           ref={register({ validate: hasFile })}
           name={element.key}
@@ -564,16 +467,17 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
       </>
     } else if (element.component === 'checkbox') {
       component = <>
-        <fieldset className="flex flex-col border border-gray-800 dark:border-gray-200">
-          <legend className="form-label text-gray-800 dark:text-gray-200">{element.title}</legend>
+        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
+        <fieldset className="flex flex-col border border-gray-800 rounded dark:border-gray-200">
           {
             element.values?.map((value, index) => <>
-              <label className="form-label text-gray-800 dark:text-gray-200 px-4" key={index}>
-                <input className="mr-2" type="checkbox" value={value} name={element.key} ref={register} />
+              <label className="form-label text-gray-800 dark:text-gray-200 px-4 py-1" key={`${element.key}${index}`}>
+                <input className="mr-2 scale-150" type="checkbox" value={value} name={element.key} ref={register} />
                 {value}
               </label>
             </>)
           }
+          <div className="pb-2"></div>
         </fieldset>
       </>
     }
@@ -591,7 +495,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
   return (
     <>
       <form
-        className={`w-full form flex items-center ${gridType === 'finalizacao' ? 'flex-col' : 'flex-col'}`}
+        className={`w-full form flex items-center flex-col text-xl`}
         onSubmit={handleSubmit(onSubmit, onError)}
       >
         <div>
@@ -599,47 +503,54 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
         </div>
         {formElements.map((element, index) => {
           return <div
-            className={`w-2/3 flex flex-col space-x-4 ${element.index !== selectedIndex || element.grid_type !== gridType ? "hidden" : ""}`}
+            className={`w-full flex flex-col space-x-4 ${element.index !== selectedIndex ? "hidden" : ""}`}
             key={index}
           >
             {selectComponent(element)}
           </div>
         })}
         <div
-          className="container flex flex-col items-center"
+          className="container flex flex-rol items-center w-3/5"
         >
-          <div
-            className="w-1/4 flex items-center"
-          >
-            {gridType === 'finalizacao' ?
-              <input
-                type="submit"
-                value="Submit"
-                className="w-full cursor-pointer btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
-              /> :
-              <button
-                className="w-full cursor-pointer btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
-                onClick={(event) => {
-                  event.preventDefault()
-                  const nextIndex = (selectedIndex+1) % 4;
-                  let nextGridType = gridType;
-                  if (nextIndex === 0) {
-                    if (gridType === 'ambiente') {
-                      nextGridType = 'design';
-                    } else if (gridType === 'design') {
-                      nextGridType = 'finalizacao';
-                    } else {
-                      nextGridType = 'ambiente';
-                    }
-                    setGridType(nextGridType);
-                  }
-                  setSelectedIndex(nextIndex);
-                }}
-              >
-                Next
-              </button>
+            {
+              selectedIndex > 0 ? 
+               <button
+                  type='button'
+                  className="w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
+                  onClick={(event) => {
+                    setSelectedIndex(selectedIndex - 1);
+                  }}
+                >
+                  Previous
+                </button> 
+               : null
             }
-          </div>
+            {
+              selectedIndex < 8 ? 
+               <button
+                  type='button'
+                  className="w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
+                  onClick={(event) => {
+                    setSelectedIndex(selectedIndex + 1);
+                  }}
+                >
+                  Next
+                </button> 
+               : null
+            }
+            {
+              selectedIndex === 8 ?
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className={`w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4 ${isLoading ? 'cursor-not-allowed' : ''}`}
+                >
+                  <div className="flex flex-row items-center justify-center">{isLoading ? <FaSpinner className="spin-spinner stroke-current mr-2 mt-1"/> : null}
+                  Submit</div>
+                  
+                </button>
+                : null
+            }
         </div>
       </form>
     </>
@@ -647,7 +558,6 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex, gridType, set
 }
 
 const ProjectForm = ({ project = null }) => {
-  const [gridType, setGridType] = useState('ambiente');
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   return (
@@ -657,69 +567,8 @@ const ProjectForm = ({ project = null }) => {
           className="flex flex-col lg:flex-row"
         >
           <div
-            style={{ width: '355px' }}
+            style={{ width: '1000px', }}
             className=""
-          >
-            <div
-              className={`w-full rounded-lg border border-gray-800 dark:border-gray-200 p-4 `}
-            >
-              <div
-                className={`w-full rounded-lg border border-gray-800 dark:border-gray-200`}
-              >
-                <div
-                  className={`text-center text-xl ${gridType === 'ambiente' ? 'text-gray-200 dark:text-gray-200 bg-gray-500' : 'cursor-pointer text-gray-800 dark:text-gray-200'}`}
-                  onClick={(event) => {
-                    setGridType('ambiente');
-                    setSelectedIndex(0);
-                  }}
-                >
-                  Definindo o Ambiente
-                </div>
-                <Ambiente
-                  gridType={gridType}
-                  selectedIndex={selectedIndex}
-                  setSelectedIndex={setSelectedIndex}
-                />
-              </div>
-              <div
-                className={`w-full rounded-lg border border-gray-800 dark:border-gray-200`}
-              >
-                <div
-                  className={`text-center text-xl ${gridType === 'design' ? 'text-gray-200 dark:text-gray-200 bg-gray-500' : 'cursor-pointer text-gray-800 dark:text-gray-200'}`}
-                  onClick={(event) => {
-                    setGridType('design');
-                    setSelectedIndex(0);
-                  }}
-                >
-                  Game Design
-                </div>
-                <Design
-                  gridType={gridType}
-                  selectedIndex={selectedIndex}
-                  setSelectedIndex={setSelectedIndex}
-                />
-              </div>
-              <div
-                className={`w-full rounded-lg border border-gray-800 dark:border-gray-200`}
-              >
-                <div
-                  className={`flex flex-col w-160 text-center text-xl ${gridType === 'finalizacao' ? 'text-gray-200 dark:text-gray-200 bg-gray-500' : 'cursor-pointer text-gray-800 dark:text-gray-200'}`}
-                  onClick={(event) => {
-                    setGridType('finalizacao');
-                    setSelectedIndex(0);
-                  }}
-                >
-                  Finalização
-                </div>
-                <Finalizacao
-                  gridType={gridType}
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            style={{ width: '800px', }}
-            className="pl-2"
           >
             <div
               className={`w-full rounded-lg border border-gray-800 dark:border-gray-200 p-4 shadow-black`}
@@ -728,8 +577,6 @@ const ProjectForm = ({ project = null }) => {
                 project={project}
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
-                gridType={gridType}
-                setGridType={setGridType}
               />
             </div>
           </div>

@@ -10,7 +10,7 @@ const formElements = [
   {
     component: 'text',
     index: 0,
-    title: 'Titulo',
+    title: 'Titulo do Projeto',
     key: 'titulo',
     values: '',
   },

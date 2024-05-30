@@ -70,14 +70,6 @@ const Navbar = () => {
                 </li>
                 <li>
                   <a
-                    href="/home"
-                    className="block text-gray-200 hover:text-white"
-                  >
-                    <span className="rounded-lg border-4 border-purple-900 bg-purple-900 hover:bg-purple-950 hover:border-purple-950">Descobrir</span>
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="/project_new"
                     className="block text-gray-200 hover:text-white"
                   >

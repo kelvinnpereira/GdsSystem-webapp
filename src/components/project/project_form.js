@@ -237,7 +237,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 7,
+    index: 6,
     title: 'Como os participantes interagirão entre si e com o sistema de gamificação?',
     key: 'interacao',
     values: [
@@ -285,7 +285,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 8,
+    index: 7,
     title: 'Como será feita a avaliação do desempenho dos participantes na gamificação?',
     key: 'desempenho',
     values: [
@@ -341,7 +341,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 9,
+    index: 8,
     title: 'O que acontece se alguém não conseguir completar a missão?',
     key: 'falha',
     values: [
@@ -363,7 +363,7 @@ const formElements = [
   },
   {
     component: 'file',
-    index: 9,
+    index: 8,
     title: 'Adicione uma capa',
     key: 'imagem',
     values: '',

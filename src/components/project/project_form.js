@@ -15,7 +15,7 @@ const formElements = [
     values: '',
   },
   {
-    component: 'checkbox',
+    component: 'radio',
     index: 0,
     title: 'O que você pretende alcançar com esta gamificação?',
     key: 'objetivo',
@@ -51,7 +51,7 @@ const formElements = [
     values: '',
   },
   {
-    component: 'select',
+    component: 'radio',
     index: 1,
     title: 'Onde a gamificação será realizada?',
     key: 'local',
@@ -101,7 +101,7 @@ const formElements = [
     ],
   },
   {
-    component: 'select',
+    component: 'radio',
     index: 3,
     title: 'Existe algum tema específico que gostaria de incorporar na gamificação?',
     key: 'tema',
@@ -164,7 +164,7 @@ const formElements = [
     values: '',
   },
   {
-    component: 'select',
+    component: 'radio',
     index: 5,
     title: 'Qual será o tipo de avaliação?',
     key: 'avaliacao',
@@ -209,7 +209,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 5,
+    index: 6,
     title: 'Quais tipos de desafios você gostaria de incluir?',
     key: 'desafios',
     values: [
@@ -237,7 +237,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 6,
+    index: 7,
     title: 'Como os participantes interagirão entre si e com o sistema de gamificação?',
     key: 'interacao',
     values: [
@@ -257,7 +257,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 6,
+    index: 7,
     title: 'Que tipo de recompensas motivariam os participantes nesta missão?',
     key: 'recompensa',
     values: [
@@ -285,7 +285,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 7,
+    index: 8,
     title: 'Como será feita a avaliação do desempenho dos participantes na gamificação?',
     key: 'desempenho',
     values: [
@@ -313,7 +313,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 7,
+    index: 8,
     title: 'Como os participantes receberão feedback durante a gamificação?',
     key: 'feedback',
     values: [
@@ -341,7 +341,7 @@ const formElements = [
   },
   {
     component: 'checkbox',
-    index: 8,
+    index: 9,
     title: 'O que acontece se alguém não conseguir completar a missão?',
     key: 'falha',
     values: [
@@ -481,6 +481,28 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
         </fieldset>
       </>
     }
+    else if (element.component === 'radio') {
+      component = <>
+        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
+        <fieldset className="flex flex-col border border-gray-800 rounded dark:border-gray-200">
+          {
+            element.values?.map((value, index) => <>
+              <label className="form-label text-gray-800 dark:text-gray-200 px-4 py-1" key={`${element.key}${index}`}>
+                <input 
+                  className="mr-2 scale-150" 
+                  type="radio" 
+                  value={value} 
+                  name={element.key} 
+                  ref={register} 
+                />
+                {value}
+              </label>
+            </>)
+          }
+          <div className="pb-2"></div>
+        </fieldset>
+      </>
+    }    
     return (
       <div
         key={element.key}

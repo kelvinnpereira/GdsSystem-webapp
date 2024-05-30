@@ -389,7 +389,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
     });
     if (response?.data) {
       alert('Projeto criado com sucesso')
-      navigate('/home')
+      navigate('/project/:id')
     }
   };
 

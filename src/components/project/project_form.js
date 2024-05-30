@@ -543,7 +543,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
                     setSelectedIndex(selectedIndex - 1);
                   }}
                 >
-                  Previous
+                  Voltar
                 </button> 
                : null
             }
@@ -556,7 +556,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
                     setSelectedIndex(selectedIndex + 1);
                   }}
                 >
-                  Next
+                  Próximo
                 </button> 
                : null
             }
@@ -568,7 +568,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
                   className={`w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4 ${isLoading ? 'cursor-not-allowed' : ''}`}
                 >
                   <div className="flex flex-row items-center justify-center">{isLoading ? <FaSpinner className="spin-spinner stroke-current mr-2 mt-1"/> : null}
-                  Submit</div>
+                  Submeter</div>
                   
                 </button>
                 : null

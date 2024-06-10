@@ -422,7 +422,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
           name={element.key}
           defaultValue={defaultValue}
           onChange={onChange}
-          className="w-full bg-gray-200 dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full bg-white dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
         >
           <option key="default" value="">Selecione uma opção</option>
           {element.values?.map((value, index) => <option key={index} value={value}>{value}</option>)}
@@ -436,7 +436,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
           name={element.key}
           type="text"
           onChange={onChange}
-          className="w-full bg-gray-200 dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full bg-white dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
           defaultValue={defaultValue}
         />
       </>
@@ -449,7 +449,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
           rows={2}
           cols={5}
           onChange={onChange}
-          className="w-full bg-gray-200 dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full bg-white dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
           defaultValue={defaultValue}
         />
       </>

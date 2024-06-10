@@ -1,19 +1,8 @@
-import { useEffect, useState } from "react";
-import useRequest from "../../hooks/request";
-import ProjectCard from "../../components/project/card";
+import useFetch from "hooks/fetch";
+import ProjectCard from "components/project/card";
 
 const HomePage = () => {
-  const { request } = useRequest('/projeto')
-  const [cards, setCards] = useState([]);
-  useEffect(() => {
-    const fetch = async () => {
-      const response = await request()
-      if (response?.data) {
-        setCards(response.data)
-      }
-    }
-    fetch()
-  }, []);
+  const { data } = useFetch('/projeto')
 
   return (
     <>
@@ -25,7 +14,7 @@ const HomePage = () => {
         <div
           className="grid grid-cols-3 mt-5"
         >
-          {cards.map(card => <ProjectCard card={card} />)}
+          {data?.data?.map(card => <ProjectCard card={card} />)}
         </div>
       </div>
     </>

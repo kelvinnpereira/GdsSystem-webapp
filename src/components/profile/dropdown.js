@@ -1,5 +1,5 @@
 import {useState, useRef, useEffect} from "react";
-import {CgProfile} from 'react-icons/cg'
+import { FaRegUserCircle } from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
@@ -28,13 +28,14 @@ const ProfileDropdown = () => {
             ref={buttonRef}
             className="inline-flex w-full justify-center gap-x-1.5 px-3 py-2 text-sm font-semibold text-gray-400 dark:text-gray-900 shadow-sm"
             onClick={(event) => {setOpen(!open)}}
+            title="profile"
           >
-            <CgProfile style={{color: 'rgb(229, 231, 235)'}} size={30}/>
+            <FaRegUserCircle className="fill-white" size={30} />
           </button>
         </div>
         <div
           ref={dropdownRef}
-          className={`bg-gray-200 dark:bg-gray-700 absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${open ? '' : 'hidden'}`}
+          className={`bg-white dark:bg-gray-700 absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${open ? '' : 'hidden'}`}
         >
           <div
             className="py-1"

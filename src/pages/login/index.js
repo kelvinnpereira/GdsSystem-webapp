@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import useRequest from "../../hooks/request";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import Swal from "sweetalert2";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -20,28 +21,35 @@ const LoginPage = () => {
     if (auth?.token) {
       navigate('/home')
     }
-  })
+  }, [auth])
 
   const handleLogin = async () => {
     if (username && password) {
-      const response = await request({
-        username: username,
-        password: password,
-      }).catch(err => {
-        dispatch({type: "LOGOUT",});
-        alert(err)
-      })
-      if (!response?.token) {
-        dispatch({type: "LOGOUT",});
-      } else {
-        dispatch({
-          type: "LOGIN",
-          auth: {
-            token: response.token,
-            username: username,
-          }
+      const response = await request({username: username, password: password})
+      if (response?.token) {
+        Swal.fire({
+          icon: "success",
+          title: "Login realizado com sucesso",
+          timer: 5000
+        }).then(() => {
+          dispatch({
+            type: "LOGIN",
+            auth: {
+              token: response.token,
+              username: username,
+            }
+          });
+          navigate("/home");
         });
-        navigate("/home");
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Algum erro aconteceu`,
+        }).then(() => {
+          dispatch({type: "LOGOUT"});
+          console.log(response)
+        })
       }
     }
   };

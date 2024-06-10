@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
-import useRequest from "../../hooks/request";
-import { UnderlinedTabs } from "../../components/tabs/underlinetabs";
-import ProjectCard from "../../components/project/card";
+import useFetch from "hooks/fetch";
+import { UnderlinedTabs } from "components/tabs/underlinetabs";
+import ProjectCard from "components/project/card";
 
 const ProfilePage = () => {
-	const { request } = useRequest('/perfil')
+	const { data } = useFetch('/perfil')
 	const [profile, setProfile] = useState({});
 
-	const fetch = async () => {
-		const response = await request()
-		if (response?.data) {
-			setProfile(response.data)
-		}
-	}
-
 	useEffect(() => {
-		fetch()
-	}, []);
+    if (data?.data) {
+      setProfile(data.data)
+    }
+	}, [data]);
+
 	return (
 		<div className="flex items-center justify-center">
 			<div
@@ -33,7 +29,7 @@ const ProfilePage = () => {
 						</div>
 						<div className="w-96 mt-4 shadow-lg shadow-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
 							<div className="text-center mt-2">
-								<div className="text-gray-200 text-2xl text-gray-600 dark:text-gray-300">{`${profile?.first_name} ${profile?.last_name}`}</div>
+								<div className="text-gray-200 font-bold text-2xl text-gray-600 dark:text-gray-300">{`${profile?.first_name} ${profile?.last_name}`}</div>
 								<div className="text-gray-400 text-xl text-gray-600 dark:text-gray-300">{profile?.username}</div>
 							</div>
 							<ul className="py-4 mt-2 text-gray-600 dark:text-gray-300 flex items-center justify-around">

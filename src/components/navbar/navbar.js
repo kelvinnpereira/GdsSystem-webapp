@@ -17,7 +17,7 @@ const Navbar = () => {
               href="/home"
               className="flex items-center"
             >
-              <SiGamedeveloper size={25}/>
+              <SiGamedeveloper size={25} title="logo"/>
               <span
                 className="self-center text-xl font-semibold whitespace-nowrap text-white ml-2"
               >
@@ -63,17 +63,17 @@ const Navbar = () => {
                 <li>
                   <a
                     href="/home"
-                    className="block text-gray-200 hover:text-white"
+                    className="block text-white"
                   >
-                    <span className="rounded-lg border-4 border-purple-900 bg-purple-900 hover:bg-purple-950 hover:border-purple-950">Para você</span>
+                    <span className="p-2 rounded-lg hover:bg-purple-950">Para você</span>
                   </a>
                 </li>
                 <li>
                   <a
                     href="/project_new"
-                    className="block text-gray-200 hover:text-white"
+                    className="block text-white"
                   >
-                    <span className="rounded-lg border-4 border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700">Novo Projeto</span>
+                    <span className="p-2 rounded-lg bg-green-700 hover:bg-green-800">Novo Projeto</span>
                   </a>
                 </li>
               </ul>

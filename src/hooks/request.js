@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { get, post, put, del } from "../config/api";
-import { redirect } from "react-router-dom";
+import { get, post, put, del } from "config/api";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const useRequest = (url, method = 'get') => {
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { auth } = useSelector(
     (state) => ({
       auth: state.auth
@@ -55,13 +57,24 @@ const useRequest = (url, method = 'get') => {
     }
     setIsLoading(false)
     if (response.status === 401) {
-      // dispatch({ type: "LOGOUT" });
-      // redirect("/login");
-      // return;
-      alert(`un ${url}`)
+      Swal.fire({
+        icon: "error",
+        title: "Usuário não credenciado",
+        text: "Redirecionando para a tela de login",
+        timer: 5000,
+      }).then(() => {
+        dispatch({ type: "LOGOUT" });
+        navigate("/login");
+      });
     }
     if (response.status === 500) {
-      alert(`Some error happened in ${url}`)
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Algum erro aconteceu em ${url}`,
+      }).then(() => {
+        console.log(response.data)
+      })
     }
     setResponse(response.data);
     return response.data

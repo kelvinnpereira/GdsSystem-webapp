@@ -19,7 +19,7 @@ const Search = () => {
           onChange={event => setText(event.target.value)}
           className="pl-3 pr-0 appearance-none h-10 w-full rounded-full text-sm focus:outline-none bg-purple-950 text-white"
         />
-        <button className="absolute top-0 mt-3 pr-3 right-0">
+        <button className="absolute top-0 mt-3 pr-3 right-0" title="search">
           <FiSearch className="stroke-current h-4 w-4"/>
         </button>
       </div>

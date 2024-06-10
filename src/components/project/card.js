@@ -3,14 +3,17 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaRegUserCircle } from "react-icons/fa";
 import { ImCross } from 'react-icons/im'
 import useRequest from "hooks/request";
+import { useSWRConfig } from 'swr'
 
-const ProjectCard = ({ card, isOwner = false, fetch = null }) => {
+const ProjectCard = ({ card, isOwner = false }) => {
 	const { request: deleteProject } = useRequest('/projeto_usuario', 'delete')
+  const { mutate } = useSWRConfig()
 	return (
 		<>
 			<div
-				className="mx-5 my-5 text-base bg-gray-200 dark:bg-gray-800 border border-2 border-gray-400 dark:border-gray-500 rounded-lg shadow"
+				className="mx-5 my-5 text-base bg-white dark:bg-gray-800 border border-2 border-gray-400 dark:border-gray-500 rounded-lg shadow"
 				style={{ width: '470px', height: '450px' }}
+        key={card.id}
 			>
 				<div className="flex justify-end pr-2 pt-2">
 					<ImCross
@@ -21,7 +24,7 @@ const ProjectCard = ({ card, isOwner = false, fetch = null }) => {
 								const response = await deleteProject({}, {}, card.id)
 								if (response?.data) {
 									alert(response?.data)
-									if (fetch) fetch();
+									mutate('/perfil');
 								}
 							}
 						}}

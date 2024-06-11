@@ -46,10 +46,9 @@ const LoginPage = () => {
           icon: "error",
           title: "Oops...",
           text: `Algum erro aconteceu`,
-        }).then(() => {
-          dispatch({type: "LOGOUT"});
-          console.log(response)
         })
+        dispatch({type: "LOGOUT"});
+        console.log(response)
       }
     }
   };

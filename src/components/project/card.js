@@ -4,6 +4,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { ImCross } from 'react-icons/im'
 import useRequest from "hooks/request";
 import { useSWRConfig } from 'swr'
+import Swal from "sweetalert2";
 
 const ProjectCard = ({ card, isOwner = false }) => {
 	const { request: deleteProject } = useRequest('/projeto_usuario', 'delete')
@@ -20,13 +21,39 @@ const ProjectCard = ({ card, isOwner = false }) => {
 						className={`cursor-pointer ${isOwner ? "" : "invisible"}`}
 						size={15}
 						onClick={async (event) => {
-							if (window.confirm(`Você tem certeza que deseja excluir o projeto ${card.titulo}?`) === 'true') {
-								const response = await deleteProject({}, {}, card.id)
-								if (response?.data) {
-									alert(response?.data)
-									mutate('/perfil');
-								}
-							}
+              Swal.fire({
+                title: "Excluir Projeto",
+                text: `Você tem certeza que deseja excluir o projeto "${card.titulo}"?`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sim, excluir!",
+                cancelButtonText: "Cancelar"
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  const response = await deleteProject({}, {}, card.id)
+                  if (response?.data) {
+                    Swal.fire({
+                      title: "Excluido!",
+                      icon: "success",
+                      text: "Projeto excluido com sucesso",
+                      timer: 3000,
+                      backdrop: false,
+                      position: "top-end",
+                      width: 500,
+                      showConfirmButton: false,
+                    })
+                    mutate('/perfil');
+                  } else {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: `Algum erro aconteceu`,
+                    })
+                  }
+                }
+              });
 						}}
 					/>
 				</div>

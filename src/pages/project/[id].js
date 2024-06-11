@@ -28,6 +28,13 @@ const Project = () => {
       })
       setValue('comentario', '')
       reValidate()
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Algum erro aconteceu`,
+      })
+      console.log(response)
     }
   }
 

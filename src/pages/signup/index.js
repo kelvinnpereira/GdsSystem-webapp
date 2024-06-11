@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useRequest from "../../hooks/request";
 import { shallowEqual, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const SignUpPage = () => {
   const [firstname, setFirstname] = useState("");
@@ -32,12 +33,26 @@ const SignUpPage = () => {
         password: password,
       })
       if (Array.isArray(response?.username) && response?.username.length > 0) {
-        alert(response.username[0]);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Algum erro aconteceu: ${response.username[0]}`,
+        })
       } else if (!response?.username) {
-        alert(response);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Algum erro aconteceu: ${response}`,
+        })
+        console.log(response)
       } else {
-        alert(`usuario ${response?.username} foi criado com sucesso`);
-        navigate("/login");
+        Swal.fire({
+          icon: "success",
+          title: `Usuário ${response?.username} foi criado com sucesso`,
+          timer: 5000
+        }).then(() => {
+          navigate("/login");
+        });
       }
     }
   };

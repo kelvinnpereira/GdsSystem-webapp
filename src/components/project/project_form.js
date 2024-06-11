@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useRequest from "../../hooks/request";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const formElements = [
   {
@@ -384,12 +385,22 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
     const response = await request(
       formData,
       { "Content-Type": "multipart/form-data" }
-    ).catch(err => {
-      alert(err)
-    });
+    );
     if (response?.data) {
-      alert('Projeto criado com sucesso')
-      navigate('/project/:id')
+      Swal.fire({
+        icon: "success",
+        title: "Projeto criado com sucesso",
+        timer: 5000
+      }).then(() => {
+        navigate(`/project/${response.data}`)
+      })
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Algum erro aconteceu`,
+      })
+      console.log(response)
     }
   };
 

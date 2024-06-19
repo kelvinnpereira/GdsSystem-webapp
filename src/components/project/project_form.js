@@ -374,9 +374,9 @@ const formElements = [
 
 const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
   const navigate = useNavigate();
-  const { handleSubmit, register, clearErrors, watch } = useForm();
+  const {handleSubmit, register, clearErrors, watch} = useForm();
   const [errors, setErrors] = useState({});
-  const { request, isLoading } = useRequest('/projeto_usuario', 'post');
+  const {request, isLoading} = useRequest('/projeto_usuario', 'post');
 
   const onSubmit = async (data) => {
     let formData = new FormData();
@@ -384,7 +384,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
     formData.set('imagem', data.imagem[0])
     const response = await request(
       formData,
-      { "Content-Type": "multipart/form-data" }
+      {"Content-Type": "multipart/form-data"}
     );
     if (response?.data) {
       Swal.fire({
@@ -416,6 +416,8 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
     return (element && element.length > 0) || 'É necessario selecionar um arquivo'
   }
 
+  const formLabel = (title) => <div className="form-label text-black dark:text-white pb-2">{title}</div>
+
   const selectComponent = (element) => {
     let component = null;
     const defaultValue = project && project[element.key] ? project[element.key] : null;
@@ -427,13 +429,14 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
     }
     if (element.component === 'select') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
+        {formLabel(element.title)}
         <select
-          ref={register({ validate: notEmpty })}
+          ref={register({validate: notEmpty})}
           name={element.key}
           defaultValue={defaultValue}
           onChange={onChange}
-          className="w-full bg-white dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full leading-tight border-2 rounded-lg border-gray-400 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-black dark:text-white py-3 px-4 pr-8 focus:ring-0 focus:outline-none focus:border-gray-600 dark:focus:border-gray-500"
+          title={element.title}
         >
           <option key="default" value="">Selecione uma opção</option>
           {element.values?.map((value, index) => <option key={index} value={value}>{value}</option>)}
@@ -441,49 +444,53 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
       </>
     } else if (element.component === 'text') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
+        {formLabel(element.title)}
         <input
-          ref={register({ validate: notEmpty })}
+          ref={register({validate: notEmpty})}
           name={element.key}
           type="text"
           onChange={onChange}
-          className="w-full bg-white dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full leading-tight border-2 rounded-lg border-gray-400 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-black dark:text-white py-3 px-4 pr-8 focus:ring-0 focus:outline-none focus:border-gray-600 dark:focus:border-gray-500"
           defaultValue={defaultValue}
+          title={element.title}
         />
       </>
     } else if (element.component === 'textarea') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
+        {formLabel(element.title)}
         <textarea
-          ref={register({ validate: notEmpty })}
+          ref={register({validate: notEmpty})}
           name={element.key}
           rows={2}
           cols={5}
           onChange={onChange}
-          className="w-full bg-white dark:bg-gray-800 border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-3 px-4 pr-8 rounded leading-tight"
+          className="w-full leading-tight border-2 rounded-lg border-gray-400 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-black dark:text-white py-3 px-4 pr-8 focus:ring-0 focus:outline-none focus:border-gray-600 dark:focus:border-gray-500"
           defaultValue={defaultValue}
+          title={element.title}
         />
       </>
     } else if (element.component === 'file') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
+        {formLabel(element.title)}
         <input
-          ref={register({ validate: hasFile })}
+          ref={register({validate: hasFile})}
           name={element.key}
           type="file"
           onChange={onChange}
           className="form-input text-gray-800 dark:text-gray-200"
           defaultValue={defaultValue}
+          title={element.title}
         />
       </>
     } else if (element.component === 'checkbox') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
-        <fieldset className="flex flex-col border border-gray-800 rounded dark:border-gray-200">
+        {formLabel(element.title)}
+        <fieldset
+          className="flex flex-col border-2 rounded-lg border-gray-400 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
           {
             element.values?.map((value, index) => <>
               <label className="form-label text-gray-800 dark:text-gray-200 px-4 py-1" key={`${element.key}${index}`}>
-                <input className="mr-2 scale-150" type="checkbox" value={value} name={element.key} ref={register} />
+                <input className="mr-2 scale-150" type="checkbox" value={value} name={element.key} ref={register}/>
                 {value}
               </label>
             </>)
@@ -491,20 +498,20 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
           <div className="pb-2"></div>
         </fieldset>
       </>
-    }
-    else if (element.component === 'radio') {
+    } else if (element.component === 'radio') {
       component = <>
-        <div className="form-label text-gray-800 dark:text-gray-200 pb-2">{element.title}</div>
-        <fieldset className="flex flex-col border border-gray-800 rounded dark:border-gray-200">
+        {formLabel(element.title)}
+        <fieldset
+          className="flex flex-col border-2 rounded-lg border-gray-400 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
           {
             element.values?.map((value, index) => <>
-              <label className="form-label text-gray-800 dark:text-gray-200 px-4 py-1" key={`${element.key}${index}`}>
-                <input 
-                  className="mr-2 scale-150" 
-                  type="radio" 
-                  value={value} 
-                  name={element.key} 
-                  ref={register} 
+              <label className="form-label text-black dark:text-white px-4 py-1" key={`${element.key}${index}`}>
+                <input
+                  className="mr-2 scale-150"
+                  type="radio"
+                  value={value}
+                  name={element.key}
+                  ref={register}
                 />
                 {value}
               </label>
@@ -513,7 +520,7 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
           <div className="pb-2"></div>
         </fieldset>
       </>
-    }    
+    }
     return (
       <div
         key={element.key}
@@ -545,52 +552,54 @@ const FormComponent = ({ project, selectedIndex, setSelectedIndex }) => {
         <div
           className="container flex flex-rol items-center w-3/5"
         >
-            {
-              selectedIndex > 0 ? 
-               <button
-                  type='button'
-                  className="w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
-                  onClick={(event) => {
-                    setSelectedIndex(selectedIndex - 1);
-                  }}
-                >
-                  Voltar
-                </button> 
-               : null
-            }
-            {
-              selectedIndex < 8 ? 
-               <button
-                  type='button'
-                  className="w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
-                  onClick={(event) => {
-                    setSelectedIndex(selectedIndex + 1);
-                  }}
-                >
-                  Próximo
-                </button> 
-               : null
-            }
-            {
-              selectedIndex === 8 ?
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className={`w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-gray-200 btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4 ${isLoading ? 'cursor-not-allowed' : ''}`}
-                >
-                  <div className="flex flex-row items-center justify-center">{isLoading ? <FaSpinner className="spin-spinner stroke-current mr-2 mt-1"/> : null}
-                  Submeter</div>
-                  
-                </button>
-                : null
-            }
+          {
+            selectedIndex > 0 ?
+              <button
+                type='button'
+                className="w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-white btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
+                onClick={(event) => {
+                  setSelectedIndex(selectedIndex - 1);
+                }}
+              >
+                Voltar
+              </button>
+              : null
+          }
+          {
+            selectedIndex < 8 ?
+              <button
+                type='button'
+                className="w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-white btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4"
+                onClick={(event) => {
+                  setSelectedIndex(selectedIndex + 1);
+                }}
+              >
+                Próximo
+              </button>
+              : null
+          }
+          {
+            selectedIndex === 8 ?
+              <button
+                type="submit"
+                disabled={isLoading}
+                className={`w-full mx-3 btn btn-default bg-blue-500 hover:bg-blue-600 text-white btn-rounded btn-icon shadow focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-4 ${isLoading ? 'cursor-not-allowed' : ''}`}
+              >
+                <div className="flex flex-row items-center justify-center">{isLoading ?
+                  <FaSpinner className="spin-spinner stroke-current mr-2 mt-1"/> : null}
+                  Submeter
+                </div>
+
+              </button>
+              : null
+          }
         </div>
       </form>
     </>
   )
 }
 
-const ProjectForm = ({ project = null }) => {
+const ProjectForm = ({project = null}) => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   return (
@@ -604,7 +613,7 @@ const ProjectForm = ({ project = null }) => {
             className=""
           >
             <div
-              className={`w-full rounded-lg border border-gray-800 dark:border-gray-200 p-4 shadow-black`}
+              className={`w-full rounded-lg border border-gray-400 dark:border-gray-700 p-4 shadow-black bg-gray-300 dark:bg-gray-900`}
             >
               <FormComponent
                 project={project}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const HOST = process.env.REACT_APP_SERVER_HOST ?? "https://gds-system-server-48ae9d941d52.herokuapp.com";
+const HOST = process.env.REACT_APP_SERVER_HOST ?? "https://gds-system-server2-056dd24e05d4.herokuapp.com";
 
 const api = axios.create({
   baseURL: HOST,

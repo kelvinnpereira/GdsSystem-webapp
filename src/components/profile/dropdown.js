@@ -35,7 +35,7 @@ const ProfileDropdown = () => {
         </div>
         <div
           ref={dropdownRef}
-          className={`bg-white dark:bg-gray-700 absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${open ? '' : 'hidden'}`}
+          className={`bg-white dark:bg-gray-800 absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${open ? '' : 'hidden'}`}
         >
           <div
             className="py-1"

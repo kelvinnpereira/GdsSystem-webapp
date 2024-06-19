@@ -27,12 +27,12 @@ const ProfilePage = () => {
 						<div className="mx-[130px] w-32 h-32 relative -mt-16 border-4 border-gray-200 dark:border-gray-700 rounded-full overflow-hidden">
 							<img className="object-cover object-center h-32" src='https://i.stack.imgur.com/l60Hf.png' alt='profile' />
 						</div>
-						<div className="w-96 mt-4 shadow-lg shadow-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
+						<div className="w-96 mt-4 shadow-lg shadow-gray-300 dark:shadow-gray-900 rounded-lg border border-gray-400 dark:border-gray-700">
 							<div className="text-center mt-2">
-								<div className="text-gray-200 font-bold text-2xl text-gray-600 dark:text-gray-300">{`${profile?.first_name} ${profile?.last_name}`}</div>
-								<div className="text-gray-400 text-xl text-gray-600 dark:text-gray-300">{profile?.username}</div>
+								<div className="font-bold text-2xl text-black dark:text-white">{`${profile?.first_name} ${profile?.last_name}`}</div>
+								<div className="text-xl text-black dark:text-white">{profile?.username}</div>
 							</div>
-							<ul className="py-4 mt-2 text-gray-600 dark:text-gray-300 flex items-center justify-around">
+							<ul className="py-4 mt-2 text-black dark:text-white flex items-center justify-around">
 								<li className="flex flex-col items-center justify-around">
 									<div>{profile?.projetos?.length}</div>
 									<div>Publicações</div>

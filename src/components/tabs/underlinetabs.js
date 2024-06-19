@@ -14,7 +14,7 @@ export const UnderlinedTabs = ({ tabs }) => {
               }}
               className={
                 openTab === tab.index
-                  ? "text-blue-600 border-b-2 border-blue-600 dark:border-blue-500 rounded-t-lg active dark:text-blue-500 group"
+                  ? "text-blue-600 border-b-2 border-blue-600 dark:border-blue-500 rounded-t-lg active dark:text-blue-400 group"
                   : "border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
               }
               type="button">

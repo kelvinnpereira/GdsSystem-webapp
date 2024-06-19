@@ -65,32 +65,37 @@ const Project = () => {
           <div className="rounded-t-lg h-96 overflow-hidden">
             <img className="object-cover object-top w-full" src={`${process.env.REACT_APP_SERVER_HOST}/media/${projeto?.imagem}`} alt='Mountain' />
           </div>
-          <div className="mt-4 border rounded-lg shadow-lg shadow-gray-300 dark:shadow-gray-900 border-gray-300 dark:border-gray-700">
+          <div
+            className="mt-4 border rounded-lg shadow-lg shadow-gray-300 dark:shadow-gray-900 border-gray-300 dark:border-gray-900 bg-gray-300 dark:bg-gray-900"
+          >
             <div
               className="flex justify-between my-5"
             >
               <div className="flex items-center justify-center">
-                <h5 className="pl-8 text-2xl font-semibold text-black dark:text-white">{projeto?.titulo}</h5>
+                <h5 className="pl-8 text-2xl font-bold text-black dark:text-white">{projeto?.titulo}</h5>
               </div>
               <div className="mr-4">
                 <div className="w-full bg-gray-200 dark:bg-gray-700 border border-gray-500 rounded-lg grid grid-cols-3 divide-x p-4">
                   <div
                     className="flex flex-col items-center justify-center"
                   >
-                    <span className="flex flex-row text-base text-gray-700 dark:text-gray-100">{projeto?.campos?.conteudo}</span>
-                    <span className="flex flex-row text-sm text-gray-500 dark:text-gray-400">Conteudo</span>
+                    <span className="flex flex-row text-base text-black dark:text-white">{projeto?.campos?.conteudo}</span>
+                    <span className="flex flex-row text-sm text-gray-600 dark:text-gray-300">Conteudo</span>
                   </div>
                   <div
                     className="flex flex-col items-center justify-center col-span-2"
                   >
-                    <span className="flex flex-row text-base text-gray-700 dark:text-gray-200 pl-4">{projeto?.campos?.idade}</span>
-                    <span className="flex flex-row text-sm text-gray-500 dark:text-gray-400">Grau de aplicação</span>
+                    <span className="flex flex-row text-base text-black dark:text-white pl-4">{projeto?.campos?.idade}</span>
+                    <span className="flex flex-row text-sm text-gray-600 dark:text-gray-300">Grau de aplicação</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="mt-4 bg-gray-100 dark:bg-gray-900 overflow-y-auto h-[500px]" tabIndex={0}>
+          <div
+            className="mt-4 border rounded-lg shadow-lg shadow-gray-300 dark:shadow-gray-900 border-gray-300 dark:border-gray-900 bg-gray-300 dark:bg-gray-900 overflow-y-auto h-[500px]"
+            tabIndex={0}
+          >
             <div className="text-black dark:text-white text-lg mx-8 my-8">
               <div className="text-xl mb-8" style={{whiteSpace: "pre-wrap"}}>
                 {projeto?.descricao}

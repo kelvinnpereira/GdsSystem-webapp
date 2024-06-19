@@ -12,7 +12,7 @@ const ProjectCard = ({ card, isOwner = false }) => {
 	return (
 		<>
 			<div
-				className="mx-5 my-5 text-base bg-white dark:bg-gray-800 border border-2 border-gray-400 dark:border-gray-500 rounded-lg shadow"
+				className="mx-5 my-5 text-base bg-gray-300 dark:bg-gray-900 border border-gray-300 dark:border-gray-900 rounded-lg shadow"
 				style={{ width: '470px', height: '450px' }}
         key={card.id}
 			>
@@ -66,7 +66,7 @@ const ProjectCard = ({ card, isOwner = false }) => {
 					>
 						<div>
 							<a className="flex flex-row items-center" href={`/project/${card.id}`}>
-								<h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{card.titulo}</h5>
+								<h5 className="text-xl font-bold tracking-tight text-black dark:text-white">{card.titulo}</h5>
 								<MdOpenInNew className="cursor-pointer ml-2 mt-1 fill-black dark:fill-white" size={20} />
 							</a>
 
@@ -75,18 +75,18 @@ const ProjectCard = ({ card, isOwner = false }) => {
 							<MdFavoriteBorder className="cursor-pointer fill-black dark:fill-white" size={30} />
 						</div>
 					</div>
-					<div className="w-full bg-gray-300 dark:bg-gray-700 border border-gray-500 rounded-lg grid grid-cols-3 divide-x sm:p-4">
+					<div className="w-full bg-gray-200 dark:bg-gray-700 border border-gray-500 rounded-lg grid grid-cols-3 divide-x sm:p-4">
 						<div
 							className="flex flex-col items-center justify-center"
 						>
-							<span className="flex flex-row text-base text-gray-700 dark:text-gray-200">{card.disciplina}</span>
-							<span className="flex flex-row text-sm text-gray-500 dark:text-gray-400">Conteudo</span>
+							<span className="flex flex-row text-base text-black dark:text-white">{card?.campos?.conteudo}</span>
+							<span className="flex flex-row text-sm text-gray-600 dark:text-gray-300">Conteudo</span>
 						</div>
 						<div
 							className="flex flex-col items-center justify-center col-span-2"
 						>
-							<span className="flex flex-row text-base text-gray-700 dark:text-gray-200">{card.grau}</span>
-							<span className="flex flex-row text-sm text-gray-500 dark:text-gray-400">Grau de aplicação</span>
+							<span className="flex flex-row text-base text-black dark:text-white">{card?.campos?.idade}</span>
+							<span className="flex flex-row text-sm text-gray-600 dark:text-gray-300">Grau de aplicação</span>
 						</div>
 					</div>
 					<div className="flex items-center justify-between mt-5">
@@ -95,7 +95,7 @@ const ProjectCard = ({ card, isOwner = false }) => {
 								<FaRegUserCircle className="cursor-pointer fill-black dark:fill-white" size={30} />
 							</div>
 							<div className="mx-1">
-								<span className="text-xl font-bold text-gray-900 dark:text-white">{card.usuario}</span>
+								<span className="text-xl text-black dark:text-white">{card.usuario}</span>
 							</div>
 						</div>
 						<div className="flex flex-row">
